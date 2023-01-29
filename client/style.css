@@ -11,7 +11,7 @@ body {
 	border-color: #c1c1c1;
 }
 #chat-list-container {
-	height: 50vh;
+	max-height: 50vh;
 	border-style: solid;
 	border-radius: 20px 20px 0 0;
 	border-color: #d7d5d5;
@@ -98,4 +98,18 @@ footer {
 	width: 30%;
 	border-radius: 0 0 15px 0;
 	border-style: solid;
+}
+
+@media only screen and (max-width: 1000px) {
+	html {
+		font-size: 3em;
+	}
+
+	body {
+		width: 95vw;
+	}
+	
+	#chat-list-container {
+		max-height: 75vh;
+	}
 }

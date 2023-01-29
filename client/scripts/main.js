@@ -1,3 +1,7 @@
-import runWebsocketClient from "./websocket.js";
+import ChatClient from "./websocket.js";
 
-await runWebsocketClient();
+(async function main() {
+    const chatClient = new ChatClient();
+
+    await chatClient.runWebsocketClient();
+})();

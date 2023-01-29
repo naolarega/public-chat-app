@@ -1,8 +1,15 @@
+from pydantic import BaseSettings
 from bson.objectid import ObjectId
 from asyncio import get_event_loop
 from motor.motor_asyncio import AsyncIOMotorClient
 
-motor_client = AsyncIOMotorClient("mongodb://mongodb-master:27017")
+class ChatSettings(BaseSettings):
+    mongo_cs: str = "mongodb://localhost:27017"
+
+    class Config:
+        env_file = ".env"
+
+motor_client = AsyncIOMotorClient(ChatSettings().mongo_cs)
 motor_client.get_io_loop = get_event_loop
 chat_service_db = motor_client.get_database("chat-service-db")
 message_collection = chat_service_db.get_collection("messages")

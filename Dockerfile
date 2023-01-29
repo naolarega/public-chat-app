@@ -1,8 +1,8 @@
-FROM python:3.10.4-slim
+FROM python:3.10.6-slim
 
-WORKDIR /home/chat-service/app
+WORKDIR /usr/local/src/app
 
-ADD requirements.txt requirements.txt
+COPY requirements.txt .
 
 RUN pip install -r requirements.txt
 

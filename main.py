@@ -1,7 +1,7 @@
 from uvicorn import run
-from typing import List, Optional
 from db import add_message, get_messages
 from fastapi.staticfiles import StaticFiles
+from typing import Any, Dict, List, Optional
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 
 app = FastAPI()
@@ -18,7 +18,7 @@ def disconnect(websocket: WebSocket):
     websocket_connections.remove(websocket)
 
 async def send_broadcast(message: str, message_type: str = "regular", client_id: Optional[int] = None):
-    data = {
+    data: Dict[str, Any] = {
         "message": message,
         "type": message_type
     }
@@ -58,6 +58,8 @@ async def ws(websocket: WebSocket, client_id: int):
             "message_type": "left",
             "message": str(client_id)
         })
+    except:
+        ...
 
 @app.get("/messages/all_messages")
 async def all_messages():

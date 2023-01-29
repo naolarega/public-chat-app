@@ -8,8 +8,14 @@ services:
     ports:
       - 8000:8000
     networks:
-      - docker-services-net
+      - chat-network
+
+  mongodb:
+    image: mongo:6.0.4
+    container_name: monogdb
+    networks:
+      - chat-network
   
 networks:
-  docker-services-net:
-    name: docker-services-net
+  chat-network:
+    name: chat-network
